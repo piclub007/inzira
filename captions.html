@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caption ideas — Minimal</title>
+  <style>
+    /* ---------- reset & base ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1d1d1f;
+      line-height: 1.47059;
+      font-weight: 400;
+      letter-spacing: -0.022em;
+      overflow-x: hidden;
+    }
+
+    /* ---------- main wrapper ---------- */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    /* ---------- back link ---------- */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #0071e3;
+      text-decoration: none;
+      padding: 24px 0 8px;
+      transition: opacity 0.2s ease;
+    }
+
+    .back-link:hover {
+      opacity: 0.7;
+    }
+
+    .back-link .arrow {
+      font-size: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    .back-link:hover .arrow {
+      transform: translateX(-2px);
+    }
+
+    /* ---------- header ---------- */
+    .header {
+      padding: 8px 0 36px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+      color: #1d1d1f;
+      margin-bottom: 12px;
+    }
+
+    .header p {
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      color: #6e6e73;
+      max-width: 60ch;
+    }
+
+    /* ---------- caption cards ---------- */
+    .captions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .caption-card {
+      background: #fbfbfd;
+      border: 1px solid #f0f0f3;
+      border-radius: 16px;
+      padding: 22px 24px;
+      transition: border-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  background 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+      position: relative;
+    }
+
+    .caption-card:hover {
+      border-color: #e2e2e7;
+      background: #fefefe;
+    }
+
+    .caption-text {
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      color: #1d1d1f;
+      margin-bottom: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .caption-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ---------- copy button ---------- */
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: #0071e3;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid #d2e3ff;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      font-family: inherit;
+      margin-left: auto;
+    }
+
+    .copy-btn:hover {
+      background: #f0f7ff;
+      border-color: #b8d8ff;
+    }
+
+    .copy-btn:active {
+      background: #e0efff;
+    }
+
+    .copy-btn:focus-visible {
+      outline: 2px solid #0071e3;
+      outline-offset: 2px;
+    }
+
+    .copy-btn.copied {
+      background: #e8f5e9;
+      border-color: #b8e0bc;
+      color: #2e7d32;
+    }
+
+    .copy-btn .icon {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    /* ---------- footnote ---------- */
+    .footnote {
+      text-align: center;
+      margin-top: 40px;
+      color: #86868b;
+      font-size: 12px;
+      letter-spacing: -0.01em;
+      font-weight: 400;
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 768px) {
+      .page {
+        padding: 0 16px 32px;
+      }
+
+      h1 {
+        font-size: 32px;
+        letter-spacing: -0.02em;
+      }
+
+      .header {
+        padding: 4px 0 28px;
+      }
+
+      .header p {
+        font-size: 14px;
+      }
+
+      .caption-card {
+        padding: 18px 20px;
+        border-radius: 14px;
+      }
+
+      .caption-text {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        padding: 0 14px 24px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .back-link {
+        font-size: 13px;
+        padding: 18px 0 6px;
+      }
+
+      .caption-card {
+        padding: 16px 16px;
+        border-radius: 12px;
+      }
+
+      .caption-text {
+        font-size: 13px;
+      }
+
+      .caption-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .copy-btn {
+        margin-left: 0;
+      }
+
+      .footnote {
+        font-size: 11px;
+        margin-top: 28px;
+      }
+    }
+
+    ::selection {
+      background: #b8d8ff;
+      color: #1d1d1f;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- back link -->
+    <a class="back-link" href="index.html">
+      <span class="arrow">←</span> Back
+    </a>
+
+    <!-- header -->
+    <header class="header">
+      <h1>Copy-paste captions for your next post.</h1>
+      <p>
+        Short, punchy, ready to copy As Simple, effective, and ready to go.
+Just tap to copy and start selling.
+      </p>
+    </header>
+
+    <!-- captions list -->
+    <div class="captions" id="captionsList">
+
+      <article class="caption-card">
+        <p class="caption-text">Day 1 vs. Day 30. The difference? I found the right lever. 🎯 Grab it before price goes up!</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Warning: Side effects may include sudden wealth and zero alarm clocks. ⏰</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Price goes up soon. Lock in your spot while it’s still beginner-friendly. 🔒</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Don’t let another month go by saying “I’ll start next week.” Start today. 📅</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">The only thing standing between you and financial freedom is a decision. Make it. ✂️</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Limited spots at this price. Once they’re gone, they’re gone. 🏃‍♀️💨</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Most people will read this caption and keep scrolling. The lucky ones will click the link. 🍀</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Your competition is already selling. Are you? Or are you still watching? 👀</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">This isn’t a get-rich-quick scheme. It’s a get-rich-steady plan. And it works. 📈</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Ready to stop dreaming and start doing? The door is open. Click the link in bio. 🚪✨</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">1 sale = $15. 10 sales = $150. Math doesn’t lie. Check the bio. 🔢</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Why work 40 hours for $500 when you can create once and sell forever? ♾️</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">The math is simple: Low ticket + High volume = Freedom. 🧮</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">You don’t need more traffic. You need better leverage. This course gives you both. ⚖️</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">$27 vs. $2700. One is a cost. The other is an asset. Which one are you buying? 🤔</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Stop saving pennies. Start building systems that print dollars. 💵</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">If you can click a link, you can build a business. No degree required. 🎓🚫</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">The ROI on this course is infinite because you get to resell it too. 🔄</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Small consistent actions &gt; Big sporadic efforts. Start small. Start now. 🐢</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Your phone is either a distraction or a money machine. Choose wisely. 📱💸</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">POV: You finally stopped overthinking and started executing. 👉 Link in bio to start.</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">The exact system I used to make my first $100 online. (It’s simpler than you think!)</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">May you turn 1 PDF into a passive income stream while you sleep. 🌙💸</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">They asked how I got financial freedom. I didn’t tell them it took just 7 days.</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">If you’re tired of trading time for money, this is your sign to switch lanes. 🚗💨</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Imagine waking up to notifications that you made money while you were sleeping. 😴💰</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Stop scrolling if you want to replace your 9-5 with a laptop lifestyle. 💻✨</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">The best investment you’ll ever make isn’t in stocks. It’s in yourself. 📈</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">I used to hate Mondays. Now I work from anywhere. Here’s how. 🌍</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Your future self will thank you for starting today. Don’t wait for “someday.”</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">The 'I told you so' moment is coming. Will you be the one saying it, or the one hearing it? 🤫 Link in bio.</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">You don’t need more time. You need better leverage. This PDF is your key. 🔑</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Most people will stay broke because they wait for permission. I gave myself permission today. Did you? ✨</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Your bank account is a reflection of your habits. Change the habit, change the balance. 💸</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Stop watching others win. Start building your own empire. The blueprint is ready. 👑</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">If you can afford coffee, you can afford financial freedom. It’s just a matter of choice. ☕➡️💰</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">They said it was hard. They were wrong. It’s just different. Here’s the difference. 🔄</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Don’t let another year pass with the same results. Break the cycle. Today. 🚫📅</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Success isn’t about being smarter. It’s about having the right tools. Do you have yours? 🛠️</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+      <article class="caption-card">
+        <p class="caption-text">Imagine looking back at this moment and realizing THIS was the day everything changed. Make it happen. 🌟</p>
+        <div class="caption-meta">
+          <button class="copy-btn" type="button">
+            <span class="icon">⧉</span> Copy
+          </button>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- footnote -->
+    <div class="footnote">
+      Minimal — caption ideas
+    </div>
+  </main>
+
+  <script>
+    // ---------- shuffle captions on page load ----------
+    (function shuffleCaptions() {
+      const container = document.getElementById('captionsList');
+      if (!container) return;
+
+      // Convert NodeList to array for shuffling
+      const cards = Array.from(container.children);
+
+      // Fisher–Yates shuffle
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+
+      // Re-append in new order
+      cards.forEach(card => container.appendChild(card));
+    })();
+
+    // ---------- copy to clipboard ----------
+    const copyButtons = document.querySelectorAll('.copy-btn');
+
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const card = btn.closest('.caption-card');
+        const text = card.querySelector('.caption-text').textContent.trim();
+        const originalHTML = btn.innerHTML;
+
+        try {
+          await navigator.clipboard.writeText(text);
+
+          btn.classList.add('copied');
+          btn.innerHTML = '<span class="icon">✓</span> Copied';
+
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = originalHTML;
+          }, 1600);
+
+        } catch (err) {
+          // fallback for browsers without clipboard API
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          try {
+            document.execCommand('copy');
+            btn.classList.add('copied');
+            btn.innerHTML = '<span class="icon">✓</span> Copied';
+
+            setTimeout(() => {
+              btn.classList.remove('copied');
+              btn.innerHTML = originalHTML;
+            }, 1600);
+          } catch (e) {
+            btn.innerHTML = '<span class="icon">✕</span> Failed';
+            setTimeout(() => {
+              btn.innerHTML = originalHTML;
+            }, 1600);
+          }
+
+          document.body.removeChild(textarea);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
