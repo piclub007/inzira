@@ -28,14 +28,14 @@
       overflow-x: hidden;
     }
 
-    /* ---------- main wrapper — tighter ---------- */
+    /* ---------- main wrapper ---------- */
     .page {
       max-width: 720px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* ---------- sections — smaller cards ---------- */
+    /* ---------- sections ---------- */
     .section {
       background: #fbfbfd;
       border-radius: 20px;
@@ -55,7 +55,7 @@
       background: #fefefe;
     }
 
-    /* ---------- typography — scaled down ---------- */
+    /* ---------- typography ---------- */
     h1 {
       font-size: 42px;
       font-weight: 700;
@@ -77,7 +77,6 @@
       gap: 0.4rem;
     }
 
-    /* small accent dot */
     h2::before {
       content: "";
       display: inline-block;
@@ -103,7 +102,6 @@
       margin-bottom: 0;
     }
 
-    /* link styling */
     .section p a {
       color: #0071e3;
       text-decoration: none;
@@ -114,7 +112,90 @@
       opacity: 0.75;
     }
 
-    /* pills / soft tags — smaller */
+    /* ---------- video embed ---------- */
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin: 24px 0 8px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #f2f2f7;
+      border: 1px solid #e8e8ed;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0071e3;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      padding: 10px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  box-shadow 0.25s ease;
+      margin-top: 8px;
+      margin-right: 8px;
+      line-height: 1.2;
+    }
+
+    .btn:hover {
+      background: #0077ed;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 113, 227, 0.18);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0, 113, 227, 0.18);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid #0071e3;
+      outline-offset: 3px;
+    }
+
+    .btn .arrow {
+      font-size: 15px;
+      line-height: 1;
+      opacity: 0.9;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover .arrow {
+      transform: translateX(2px);
+    }
+
+    /* secondary button — subtle */
+    .btn-secondary {
+      background: #f2f2f7;
+      color: #1d1d1f;
+    }
+
+    .btn-secondary:hover {
+      background: #e8e8ed;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ---------- soft tags ---------- */
     .soft-tag {
       display: inline-block;
       background: #f2f2f7;
@@ -133,7 +214,7 @@
       background: #e8e8ed;
     }
 
-    /* subtle divider — tighter */
+    /* ---------- divider ---------- */
     .divider {
       height: 1px;
       background: #e8e8ed;
@@ -142,7 +223,7 @@
       border: none;
     }
 
-    /* minimal list — compact */
+    /* ---------- minimal list ---------- */
     .minimal-list {
       list-style: none;
       display: flex;
@@ -169,7 +250,7 @@
       opacity: 0.9;
     }
 
-    /* ---------- navigation dots — smaller ---------- */
+    /* ---------- navigation dots ---------- */
     .nav-dots {
       display: flex;
       gap: 10px;
@@ -197,7 +278,7 @@
       transform: scale(1.4);
     }
 
-    /* small footnote */
+    /* ---------- footnote ---------- */
     .footnote {
       text-align: center;
       margin-top: 20px;
@@ -208,7 +289,7 @@
       padding-bottom: 16px;
     }
 
-    /* ---------- responsive refinements ---------- */
+    /* ---------- responsive ---------- */
     @media (max-width: 768px) {
       .page {
         padding: 0 16px;
@@ -264,6 +345,16 @@
         font-size: 11px;
         padding: 3px 10px;
       }
+
+      .btn {
+        font-size: 13px;
+        padding: 9px 18px;
+      }
+
+      .video-frame {
+        margin: 18px 0 6px;
+        border-radius: 12px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -299,88 +390,103 @@
         font-size: 11px;
         margin-top: 16px;
       }
+
+      .btn {
+        font-size: 12px;
+        padding: 8px 16px;
+      }
     }
 
-    /* ---------- selection ---------- */
     ::selection {
       background: #b8d8ff;
       color: #1d1d1f;
-    }
-
-    /* ---------- focus ---------- */
-    a:focus-visible {
-      outline: 2px solid #0071e3;
-      outline-offset: 3px;
-      border-radius: 3px;
     }
   </style>
 </head>
 <body>
   <main class="page">
 
-    <!-- SECTION 1 — hero / intro -->
-    <section class="section" id="intro">
-      <h1>Simplicity,<br>refined.</h1>
+    <!-- ============ SECTION 1 — VIDEO TUTORIAL ============ -->
+    <section class="section" id="tutorial">
+      <h1>Watch the<br>tutorial.</h1>
       <p>
-        A minimal space with four smooth sections. No noise, no clutter — 
-        just quiet content that breathes. Built with plain HTML & CSS, 
-        responsive by nature.
+        A short walkthrough covering everything you need — from first steps to 
+        the finishing touches. Press play and follow along.
       </p>
-      <p>
-        <span class="soft-tag">Smooth</span>
-        <span class="soft-tag">Light</span>
-        <span class="soft-tag">Cool</span>
+
+      <!-- YouTube embed — replace the src with your own video ID -->
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+          title="Video tutorial"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <p style="font-size: 13px; color: #86868b; margin-top: 10px;">
+        Having trouble viewing? <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">Open on YouTube</a>.
       </p>
     </section>
 
-    <!-- SECTION 2 — about / what's inside -->
-    <section class="section" id="about">
-      <h2>What you get</h2>
+    <!-- ============ SECTION 2 — SETUP ============ -->
+    <section class="section" id="setup">
+      <h2>Setup</h2>
       <p>
-        Everything sits on a calm background, with soft borders and zero distractions. 
-        Sections transition with natural scroll — no fancy effects, just pure smoothness.
+        Get everything running in a few minutes. Follow the guide, grab the 
+        files, and you're ready to go. No complicated steps — just the essentials.
       </p>
       <hr class="divider">
       <ul class="minimal-list">
-        <li>4 clean sections</li>
-        <li>Fluid typography</li>
-        <li>Subtle hover states</li>
-        <li>Totally responsive</li>
-        <li>No JavaScript</li>
+        <li>One-click install</li>
+        <li>No dependencies</li>
+        <li>Works everywhere</li>
       </ul>
+      <div style="margin-top: 28px;">
+        <a class="btn" href="https://example.com/setup" target="_blank" rel="noopener">
+          Get started <span class="arrow">→</span>
+        </a>
+      </div>
     </section>
 
-    <!-- SECTION 3 — features / vibe -->
-    <section class="section" id="features">
-      <h2>The vibe</h2>
+    <!-- ============ SECTION 3 — CAPTION IDEAS ============ -->
+    <section class="section" id="captions">
+      <h2>Caption ideas</h2>
       <p>
-        It feels modern without trying hard. Every detail is reduced to its essential form — 
-        border radius, spacing, and a single accent color to keep the eye moving.
+        Stuck on what to write? Browse a curated collection of captions — 
+        short, punchy, and ready to copy. New ideas added regularly.
       </p>
       <p>
-        Try hovering over the section borders or the little navigation dots below. 
-        Everything is subtle, but alive.
+        From minimal one-liners to thoughtful hooks, there's something for every post.
       </p>
+      <div style="margin-top: 28px;">
+        <a class="btn" href="captions.html">
+          Browse captions <span class="arrow">→</span>
+        </a>
+      </div>
     </section>
 
-    <!-- SECTION 4 — closing / outro -->
-    <section class="section" id="outro">
-      <h2>Quietly cool</h2>
+    <!-- ============ SECTION 4 — PREMADE VIDEOS ============ -->
+    <section class="section" id="videos">
+      <h2>Premade videos</h2>
       <p>
-        That's it. Four sections that don't shout. Smooth scrolling, clean layout, 
-        and a calm aesthetic that just works.
+        A growing library of ready-to-use videos. Download, drop into your project, 
+        and publish. High quality, no strings attached.
       </p>
-      <p>
-        — Built with plain HTML, no frameworks, no fancy tricks. Just the essentials.
-      </p>
+      <div style="margin-top: 28px;">
+        <a class="btn" href="https://mega.nz/folder/yourfolderid" target="_blank" rel="noopener">
+          Open on MEGA <span class="arrow">→</span>
+        </a>
+      </div>
     </section>
 
     <!-- navigation dots -->
     <div class="nav-dots" aria-label="Section navigation">
-      <a href="#intro" aria-label="Introduction">·</a>
-      <a href="#about" aria-label="About">·</a>
-      <a href="#features" aria-label="Features">·</a>
-      <a href="#outro" aria-label="Outro">·</a>
+      <a href="#tutorial" aria-label="Video tutorial">·</a>
+      <a href="#setup" aria-label="Setup">·</a>
+      <a href="#captions" aria-label="Caption ideas">·</a>
+      <a href="#videos" aria-label="Premade videos">·</a>
     </div>
 
     <div class="footnote">
